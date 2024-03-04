@@ -3,7 +3,7 @@ plugins {
 }
 
 repositories {
-	mavenLocal()
+    mavenLocal()
 	maven {
 		url = 'https://repo.runelite.net'
 	}
@@ -23,7 +23,7 @@ dependencies {
 	testImplementation group: 'net.runelite', name:'jshell', version: runeLiteVersion
 }
 
-group = 'com.example'
+group = 'com.keyremappingplus'
 version = '1.0-SNAPSHOT'
 
 tasks.withType(JavaCompile) {
