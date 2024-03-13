@@ -53,7 +53,6 @@ import net.runelite.client.util.ColorUtil;
 	name = "Key Remapping Plus",
 	description = "A clone of the Key Remapping RuneLite plugin with extra features",
 	tags = {"enter", "chat", "wasd", "camera"},
-	enabledByDefault = false,
 	conflicts = "Key Remapping"
 )
 public class KeyRemappingPlusPlugin extends Plugin
