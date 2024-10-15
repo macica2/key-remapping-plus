@@ -288,6 +288,19 @@ public interface KeyRemappingPlusConfig extends Config
 
 	@ConfigItem(
 		position = 20,
+		keyName = "ignoreInterfaces",
+		name = "Ignore Interfaces",
+		description = "Configures whether this plugin will continue to remap your Fkeys when an interface it open." +
+			"Note that this may have unintended effects, especially if remapping to numerical keys.",
+		section = fKeySection
+	)
+	default boolean interfaceIgnore()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		position = 21,
 		keyName = "space",
 		name = "Space",
 		description = "The key which will replace {Space} when dialogs are open."
@@ -298,7 +311,7 @@ public interface KeyRemappingPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 21,
+		position = 22,
 		keyName = "control",
 		name = "Control",
 		description = "The key which will replace {Control}."
@@ -312,7 +325,7 @@ public interface KeyRemappingPlusConfig extends Config
 		keyName = "promptText",
 		name = "Prompt Text",
 		description = "Changes the text shown which prompts the user to start chatting.",
-		position = 22,
+		position = 23,
 		section = chatPromptSection
 	)
 	default String promptText()
@@ -324,7 +337,7 @@ public interface KeyRemappingPlusConfig extends Config
 		keyName = "promptColor",
 		name = "Prompt Color",
 		description = "Changes the color of the chat prompt text.",
-		position = 23,
+		position = 24,
 		section = chatPromptSection
 	)
 	default Color promptColor()
