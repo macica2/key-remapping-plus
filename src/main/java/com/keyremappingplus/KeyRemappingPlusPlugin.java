@@ -145,11 +145,6 @@ public class KeyRemappingPlusPlugin extends Plugin
 			return true;
 		}
 
-		//Place after bank pin so that will still work
-		if (config.interfaceIgnore()) {
-			return false;
-		}
-
 		return isHidden(ComponentID.CHATBOX_MESSAGES) || isHidden(ComponentID.CHATBOX_TRANSPARENT_BACKGROUND_LINES);
 
 	}
