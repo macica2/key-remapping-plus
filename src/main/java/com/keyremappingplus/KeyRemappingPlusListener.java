@@ -100,7 +100,7 @@ public class KeyRemappingPlusListener implements KeyListener
 			// In addition to the above checks, the F-key remapping shouldn't
 			// activate when dialogs are open which listen for number keys
 			// to select options
-			if (config.fkeyRemap() && (!config.interfaceIgnore() ? !plugin.isDialogOpen() : true))
+			if (config.fkeyRemap() && !plugin.isDialogOpen(config.interfaceIgnore()))
 			{
 				if (config.f1().matches(e))
 				{
@@ -158,7 +158,7 @@ public class KeyRemappingPlusListener implements KeyListener
 
 			// Do not remap to space key when the options dialog is open, since the options dialog never
 			// listens for space, and the remapped key may be one of keys it listens for.
-			if (plugin.isDialogOpen() && !plugin.isOptionsDialogOpen() && config.space().matches(e))
+			if (plugin.isDialogOpen(false) && !plugin.isOptionsDialogOpen() && config.space().matches(e))
 			{
 				mappedKeyCode = KeyEvent.VK_SPACE;
 			}

@@ -133,7 +133,7 @@ public class KeyRemappingPlusPlugin extends Plugin
 	 *
 	 * @return
 	 */
-	boolean isDialogOpen()
+	boolean isDialogOpen(boolean ignoreInterfaces)
 	{
 		// Most chat dialogs with numerical input are added without the chatbox or its key listener being removed,
 		// so chatboxFocused() is true. The chatbox onkey script uses the following logic to ignore key presses,
@@ -143,6 +143,11 @@ public class KeyRemappingPlusPlugin extends Plugin
 		// Keyboard Bankpin feature of the Bank plugin
 		if (!isHidden(ComponentID.BANK_PIN_CONTAINER)) {
 			return true;
+		}
+
+		//Place after bank pin to ensure that will still work
+		if (ignoreInterfaces) {
+			return false;
 		}
 
 		return isHidden(ComponentID.CHATBOX_MESSAGES) || isHidden(ComponentID.CHATBOX_TRANSPARENT_BACKGROUND_LINES);
