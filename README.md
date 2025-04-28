@@ -1,3 +1,5 @@
+# NOTE: This plugin is currently no longer maintained by me. If you want to be a contributor and own future updates, let me know.
+
 # Key Remapping Plus
 This plugin is an exact copy of the official Key Remapping plugin,
 with the following features that can be configured in the plugin settings.
