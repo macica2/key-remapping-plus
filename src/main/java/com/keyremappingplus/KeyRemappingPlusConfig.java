@@ -328,9 +328,9 @@ public interface KeyRemappingPlusConfig extends Config
 		position = 23,
 		section = chatPromptSection
 	)
-	default String promptText()
+	default ModifierlessKeybind promptKey()
 	{
-		return "Press Enter to Chat...";
+		return new ModifierlessKeybind(KeyEvent.VK_ENTER, 0);
 	}
 
 	@ConfigItem(
