@@ -37,8 +37,10 @@ import net.runelite.api.Client;
 import net.runelite.api.VarClientStr;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.input.KeyListener;
+import java.awt.event.MouseEvent;
+import net.runelite.client.input.MouseListener;
 
-public class KeyRemappingPlusListener implements KeyListener
+public class KeyRemappingPlusListener implements KeyListener, MouseListener
 {
 	@Inject
 	private KeyRemappingPlusPlugin plugin;
@@ -249,4 +251,123 @@ public class KeyRemappingPlusListener implements KeyListener
 			e.setKeyChar(KeyEvent.CHAR_UNDEFINED);
 		}
 	}
+
+@Override
+public void mousePressed(MouseEvent e)
+{
+    if (!plugin.chatboxFocused() || plugin.isTyping())
+    {
+        return;
+    }
+
+    int mouseButton = e.getButton();
+    int mappedKeyCode = KeyEvent.VK_UNDEFINED;
+
+    // Check for Mouse Button 4 (Back button)
+    if (mouseButton == 4)
+    {
+        ModifierlessKeybind binding = config.mouseButton4();
+        // Only remap if it's not set to ESC (our "disabled" state)
+        if (binding.getKeyCode() != KeyEvent.VK_ESCAPE)
+        {
+            mappedKeyCode = binding.getKeyCode();
+        }
+    }
+    // Check for Mouse Button 5 (Forward button)
+    else if (mouseButton == 5)
+    {
+        ModifierlessKeybind binding = config.mouseButton5();
+        // Only remap if it's not set to ESC (our "disabled" state)
+        if (binding.getKeyCode() != KeyEvent.VK_ESCAPE)
+        {
+            mappedKeyCode = binding.getKeyCode();
+        }
+    }
+
+    // If we found a valid mapping, simulate the key press
+    if (mappedKeyCode != KeyEvent.VK_UNDEFINED)
+    {
+        // Create a fake KeyEvent to trigger the remapped key
+        KeyEvent keyEvent = new KeyEvent(
+            e.getComponent(),
+            KeyEvent.KEY_PRESSED,
+            e.getWhen(),
+            0,
+            mappedKeyCode,
+            KeyEvent.CHAR_UNDEFINED
+        );
+        
+        // Process it through our existing key handler
+        keyPressed(keyEvent);
+        
+        // Consume the mouse event so it doesn't do its normal action
+        e.consume();
+    }
+}
+
+@Override
+public void mouseReleased(MouseEvent e)
+{
+    if (!plugin.chatboxFocused() || plugin.isTyping())
+    {
+        return;
+    }
+
+    int mouseButton = e.getButton();
+    int mappedKeyCode = KeyEvent.VK_UNDEFINED;
+
+    // Check for Mouse Button 4
+    if (mouseButton == 4)
+    {
+        ModifierlessKeybind binding = config.mouseButton4();
+        if (binding.getKeyCode() != KeyEvent.VK_ESCAPE)
+        {
+            mappedKeyCode = binding.getKeyCode();
+        }
+    }
+    // Check for Mouse Button 5
+    else if (mouseButton == 5)
+    {
+        ModifierlessKeybind binding = config.mouseButton5();
+        if (binding.getKeyCode() != KeyEvent.VK_ESCAPE)
+        {
+            mappedKeyCode = binding.getKeyCode();
+        }
+    }
+
+    // Simulate the key release
+    if (mappedKeyCode != KeyEvent.VK_UNDEFINED)
+    {
+        KeyEvent keyEvent = new KeyEvent(
+            e.getComponent(),
+            KeyEvent.KEY_RELEASED,
+            e.getWhen(),
+            0,
+            mappedKeyCode,
+            KeyEvent.CHAR_UNDEFINED
+        );
+        
+        keyReleased(keyEvent);
+        e.consume();
+    }
+}
+
+@Override
+public void mouseClicked(MouseEvent e)
+{
+    // Not needed for our purposes
+}
+
+@Override
+public void mouseEntered(MouseEvent e)
+{
+    // Not needed
+}
+
+@Override
+public void mouseExited(MouseEvent e)
+{
+    // Not needed
+}
+	
 }
