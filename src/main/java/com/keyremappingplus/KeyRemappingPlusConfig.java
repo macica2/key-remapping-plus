@@ -356,4 +356,27 @@ public interface KeyRemappingPlusConfig extends Config
 	{
 		return Color.BLACK;
 	}
+	
+	@ConfigItem(
+	    position = 26,
+	    keyName = "mouseButton4",
+	    name = "Mouse Button 4",
+	    description = "The key which will replace Mouse Button 4 (Back button). Set to ESC to disable."
+	)
+	default ModifierlessKeybind mouseButton4()
+	{
+	    return new ModifierlessKeybind(KeyEvent.VK_ESCAPE, 0);
+	}
+	
+	@ConfigItem(
+	    position = 27,
+	    keyName = "mouseButton5",
+	    name = "Mouse Button 5",
+	    description = "The key which will replace Mouse Button 5 (Forward button). Set to ESC to disable."
+	)
+	default ModifierlessKeybind mouseButton5()
+	{
+	    return new ModifierlessKeybind(KeyEvent.VK_ESCAPE, 0);
+	}
+	
 }
