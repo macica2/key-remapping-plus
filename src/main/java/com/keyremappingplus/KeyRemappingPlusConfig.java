@@ -333,22 +333,10 @@ public interface KeyRemappingPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "promptKey",
-		name = "Prompt Key",
-		description = "The key which allows the user to start chatting.",
-		position = 24,
-		section = chatPromptSection
-	)
-	default ModifierlessKeybind promptKey()
-	{
-		return new ModifierlessKeybind(KeyEvent.VK_ENTER, 0);
-	}
-
-	@ConfigItem(
 		keyName = "promptText",
 		name = "Prompt Text",
 		description = "Changes the text shown which prompts the user to start chatting.",
-		position = 25,
+		position = 24,
 		section = chatPromptSection
 	)
 	default String promptText()
@@ -360,7 +348,7 @@ public interface KeyRemappingPlusConfig extends Config
 		keyName = "promptColor",
 		name = "Prompt Color",
 		description = "Changes the color of the chat prompt text.",
-		position = 26,
+		position = 25,
 		section = chatPromptSection
 	)
 	default Color promptColor()

@@ -168,11 +168,6 @@ public class KeyRemappingPlusListener implements KeyListener
 				mappedKeyCode = KeyEvent.VK_CONTROL;
 			}
 
-			if (config.promptKey().matches(e))
-			{
-				mappedKeyCode = KeyEvent.VK_ENTER;
-			}
-
 			if (config.shift().matches(e))
 			{
 				mappedKeyCode = KeyEvent.VK_SHIFT;
