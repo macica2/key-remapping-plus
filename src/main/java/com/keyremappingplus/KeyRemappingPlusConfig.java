@@ -322,10 +322,21 @@ public interface KeyRemappingPlusConfig extends Config
 	}
 
 	@ConfigItem(
+			position = 23,
+			keyName = "shift",
+			name = "Shift",
+			description = "The key which will replace Shift."
+	)
+	default ModifierlessKeybind shift()
+	{
+		return new ModifierlessKeybind(KeyEvent.VK_UNDEFINED, InputEvent.SHIFT_DOWN_MASK);
+	}
+
+	@ConfigItem(
 		keyName = "promptKey",
 		name = "Prompt Key",
 		description = "The key which allows the user to start chatting.",
-		position = 23,
+		position = 24,
 		section = chatPromptSection
 	)
 	default ModifierlessKeybind promptKey()
@@ -337,7 +348,7 @@ public interface KeyRemappingPlusConfig extends Config
 		keyName = "promptText",
 		name = "Prompt Text",
 		description = "Changes the text shown which prompts the user to start chatting.",
-		position = 24,
+		position = 25,
 		section = chatPromptSection
 	)
 	default String promptText()
@@ -349,7 +360,7 @@ public interface KeyRemappingPlusConfig extends Config
 		keyName = "promptColor",
 		name = "Prompt Color",
 		description = "Changes the color of the chat prompt text.",
-		position = 25,
+		position = 26,
 		section = chatPromptSection
 	)
 	default Color promptColor()
