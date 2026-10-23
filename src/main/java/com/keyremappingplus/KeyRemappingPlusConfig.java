@@ -58,6 +58,13 @@ public interface KeyRemappingPlusConfig extends Config
 	)
 	String chatPromptSection = "chatPrompt";
 
+	@ConfigSection(
+			name = "Compass Remapping",
+			description = "Keys that snap the camera to a cardinal direction",
+			position = 3
+	)
+	String compassSection = "compass";
+
 	@ConfigItem(
 		position = 1,
 		keyName = "cameraRemap",
@@ -355,4 +362,49 @@ public interface KeyRemappingPlusConfig extends Config
 	{
 		return Color.BLACK;
 	}
+
+	@ConfigItem(
+			position = 26,
+			keyName = "compassRemap",
+			name = "Remap Compass",
+			description = "Configures whether the compass keys snap the camera to a cardinal direction",
+			section = compassSection
+	)
+	default boolean compassRemap() { return false; }
+
+	@ConfigItem(
+			position = 27,
+			keyName = "compassNorth",
+			name = "Face North",
+			description = "Snaps the camera to face north.",
+			section = compassSection
+	)
+	default ModifierlessKeybind compassNorth() { return new ModifierlessKeybind(KeyEvent.VK_I, 0); }
+
+	@ConfigItem(
+			position = 28,
+			keyName = "compassEast",
+			name = "Face East",
+			description = "Snaps the camera to face east.",
+			section = compassSection
+	)
+	default ModifierlessKeybind compassEast() { return new ModifierlessKeybind(KeyEvent.VK_L, 0); }
+
+	@ConfigItem(
+			position = 29,
+			keyName = "compassSouth",
+			name = "Face South",
+			description = "Snaps the camera to face south.",
+			section = compassSection
+	)
+	default ModifierlessKeybind compassSouth() { return new ModifierlessKeybind(KeyEvent.VK_K, 0); }
+
+	@ConfigItem(
+			position = 30,
+			keyName = "compassWest",
+			name = "Face West",
+			description = "Snaps the camera to face west.",
+			section = compassSection
+	)
+	default ModifierlessKeybind compassWest() { return new ModifierlessKeybind(KeyEvent.VK_J, 0); }
 }
