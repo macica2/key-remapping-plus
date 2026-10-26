@@ -75,6 +75,29 @@ public class KeyRemappingPlusListener implements KeyListener
 
 		if (!plugin.isTyping())
 		{
+
+			int compassYaw = -1;
+			if (config.compassRemap())
+			{
+				if (config.compassNorth().matches(e)) { compassYaw = KeyRemappingPlusPlugin.YAW_NORTH; }
+				else if (config.compassEast().matches(e)) { compassYaw = KeyRemappingPlusPlugin.YAW_EAST; }
+				else if (config.compassSouth().matches(e)) { compassYaw = KeyRemappingPlusPlugin.YAW_SOUTH; }
+				else if (config.compassWest().matches(e)) { compassYaw = KeyRemappingPlusPlugin.YAW_WEST; }
+			}
+
+			// Skip while a chat dialog is open, where keys may be numeric/option input
+			if (compassYaw != -1 && !plugin.isDialogOpen(false))
+			{
+				plugin.faceDirection(compassYaw);
+				e.consume(); // don't let the game also see the raw key
+				final char compassKeyChar = e.getKeyChar();
+				if (compassKeyChar != KeyEvent.CHAR_UNDEFINED)
+				{
+					blockedChars.add(compassKeyChar); // swallow the follow-up keyTyped
+				}
+				return;
+			}
+
 			int mappedKeyCode = KeyEvent.VK_UNDEFINED;
 
 			if (config.cameraRemap())

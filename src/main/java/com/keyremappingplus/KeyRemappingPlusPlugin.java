@@ -76,6 +76,11 @@ public class KeyRemappingPlusPlugin extends Plugin
 	@Setter(AccessLevel.PACKAGE)
 	private boolean typing;
 
+	static final int YAW_NORTH = 0;
+	static final int YAW_WEST = 4096;
+	static final int YAW_SOUTH = 8192;
+	static final int YAW_EAST = 12288;
+
 	@Override
 	protected void startUp() throws Exception
 	{
@@ -209,6 +214,17 @@ public class KeyRemappingPlusPlugin extends Plugin
 				setChatboxWidgetInput(chatboxInput, ColorUtil.wrapWithColorTag(client.getVarcStrValue(VarClientStr.CHATBOX_TYPED_TEXT) + "*", textColor));
 			}
 		}
+	}
+
+	void faceDirection(int yaw)
+	{
+		clientThread.invoke(() ->
+		{
+			if (client.getGameState() == GameState.LOGGED_IN)
+			{
+				client.setCameraYawTarget(yaw);
+			}
+		});
 	}
 
 	private void setChatboxWidgetInput(Widget widget, String input)
